@@ -22,37 +22,7 @@ class AdminVoteService extends BaseProjectAdminService {
 
 	// 按项目统计
 	async statVoteAll(voteId) {
-		let vote = await VoteModel.getOne(voteId);
-		if (!vote) return;
-
-
-		let where = {
-			VOTE_JOIN_VOTE_ID: voteId
-		}
-
-		// 统计票数
-		let cnt = await VoteJoinModel.count(where);
-
-		// 统计用户
-		let cntUser = await VoteJoinModel.distinctCnt(where, 'VOTE_JOIN_USER_ID');
-
-		let item = vote.VOTE_ITEM;
-		for (let k = 0; k < item.length; k++) {
-			let whereIdx = {
-				VOTE_JOIN_VOTE_ID: voteId,
-				VOTE_JOIN_IDX: k
-			}
-			let cntIdx = await VoteJoinModel.count(whereIdx);
-			item[k].cnt = cntIdx;
-		}
-
-		let data = {
-			VOTE_CNT: cnt,
-			VOTE_USER_CNT: cntUser,
-			VOTE_ITEM: item
-		}
-		await VoteModel.edit(voteId, data);
-
+		this.AppError('该功能暂不开放，如有需要请加作者微信：cclinux0730'); 
 	}
 
 
@@ -239,22 +209,7 @@ class AdminVoteService extends BaseProjectAdminService {
 	//#############################   
 	/** 取消某项目的投票记录 */
 	async clearVoteAll(voteId) {
-		let vote = await VoteModel.getOne(voteId);
-		if (!vote) return;
-
-		let item = vote.VOTE_ITEM;
-		for (let k = 0; k < item.length; k++) {
-			item[k].cnt = 0;
-		}
-		let data = {
-			VOTE_ITEM: item,
-			VOTE_CNT: 0,
-			VOTE_USER_CNT: 0
-		}
-		await VoteModel.edit(voteId, data);
-
-		await VoteJoinModel.del({ VOTE_JOIN_VOTE_ID: voteId });
-
+		this.AppError('该功能暂不开放，如有需要请加作者微信：cclinux0730'); 
 	}
 
 
