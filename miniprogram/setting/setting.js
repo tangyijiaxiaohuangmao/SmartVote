@@ -3,7 +3,7 @@ module.exports = {
 	CLOUD_ID: 'init-5go8b8pdc98ea814', //云服务id ,本地测试环境 
 
 	// #### 版本信息 
-	VER: 'Enroll build 2022.07.26',
+	VER: 'Vote build 2022.07.26',
 	COMPANY: '联系作者',
 
 	// #### 系统参数 
